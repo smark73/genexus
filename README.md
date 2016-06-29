@@ -1,5 +1,7 @@
-# Genesis Sample Theme with Gulp & Sass
+My fork of Greg Rickaby's 
+https://github.com/gregrickaby/genesis-sample
 
+# Genesis Sample Theme with Gulp & Sass
 
 Hi!
 
@@ -64,3 +66,4 @@ Grunt is still available, but wont be supported going forward. [Download](https:
 
 * For Genesis support, please visit [http://my.studiopress.com/help/](http://my.studiopress.com/help/)
 * For support with this theme, visit [https://github.com/gregrickaby/genesis-sample/issues](https://github.com/gregrickaby/genesis-sample/issues)
+
