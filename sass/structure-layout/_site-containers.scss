@@ -1,0 +1,21 @@
+/* ## Site Containers
+--------------------------------------------- */
+
+body {
+	background: $color-whitesmoke;
+}
+
+.site-inner,
+.wrap {
+
+	@include outer-container;
+	
+}
+
+.site-inner {
+
+	@include outer-container;
+
+	clear: both;
+	padding-top: 40px;
+}
