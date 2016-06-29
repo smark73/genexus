@@ -1,7 +1,8 @@
-My fork of Greg Rickaby's 
+Theme based on Greg Rickaby's 
 https://github.com/gregrickaby/genesis-sample
 
-# Genesis Sample Theme with Gulp & Sass
+
+## Genesis Sample Theme with Gulp & Sass
 
 Hi!
 
@@ -13,13 +14,6 @@ I'm a fork of the official [Genesis Sample](https://github.com/copyblogger/genes
 
 Because I'm bundled with Gulp, basic knowledge of the command line and the following dependencies are required: [Node](http://nodejs.org/) and [Gulp CLI](https://github.com/gulpjs/gulp-cli) (`npm install -g gulp-cli`).
 
-### Installation Instructions
-[Download This Theme](https://github.com/gregrickaby/genesis-sample/archive/master.zip) (.zip)
-
-1. Add the Genesis Sample theme folder in the wp-content/themes/ directory. (The Genesis parent theme needs to be in the wp-content/themes/ directory as well.)
-2. Go to your WordPress dashboard and select Appearance.
-3. Activate the Genesis Sample theme.
-4. Inside your WordPress dashboard, go to Genesis > Theme Settings and configure them to your liking.
 
 ## Development
 
@@ -36,7 +30,7 @@ cd /your-project/wordpress/wp-content/themes/genesis-sample
 ```bash
 npm install
 ```
-![Install and Gulp](https://dl.dropbox.com/s/xceger83jq5tncw/genesis-sample-theme-gulp.gif?dl=0)
+
 
 ### Gulp Tasks
 
@@ -58,9 +52,6 @@ From the command line, type any of the following to perform an action:
 
 `gulp` - Runs the following tasks at the same time: i18n, icons, scripts, styles, sprites
 
-### What about Grunt?
-
-Grunt is still available, but wont be supported going forward. [Download](https://github.com/gregrickaby/genesis-sample/tree/v2.2.2-grunt) the [Grunt branch](https://github.com/gregrickaby/genesis-sample/tree/v2.2.2-grunt).
 
 ## Support
 
