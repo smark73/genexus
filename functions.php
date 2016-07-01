@@ -50,12 +50,12 @@ function genexus_enqueue_reqs() {
 	wp_register_style( 'genexus-styles', get_stylesheet_directory_uri() . '/style.css', array(), CHILD_THEME_VERSION );
 	wp_enqueue_style( 'genexus-styles' );
 
-	wp_enqueue_script( 'genexus-responsive-menu', get_stylesheet_directory_uri() . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0', true );
-	$output = array(
-		'mainMenu' => __( '', 'genesis-sample' ),
-		'subMenu'  => __( '', 'genesis-sample' ),
-	);
-	wp_localize_script( 'genexus-responsive-menu', 'genesisSampleL10n', $output );
+	//wp_enqueue_script( 'genexus-responsive-menu', get_stylesheet_directory_uri() . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0', true );
+	//$output = array(
+	//	'mainMenu' => __( '', 'genesis-sample' ),
+	//	'subMenu'  => __( '', 'genesis-sample' ),
+	//);
+	//wp_localize_script( 'genexus-responsive-menu', 'genesisSampleL10n', $output );
 
 	//* Add compiled JS
 	wp_enqueue_script( 'genexus-scripts', get_stylesheet_directory_uri() . '/js/script.min.js', array(), CHILD_THEME_VERSION, true );
@@ -120,6 +120,23 @@ remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 add_action( 'genesis_footer', 'genesis_do_subnav', 5 );
 
 
+/** Unregister site layouts */
+//genesis_unregister_layout( 'sidebar-content' );
+//genesis_unregister_layout( 'full-width' );
+genesis_unregister_layout( 'content-sidebar-sidebar' );
+genesis_unregister_layout( 'sidebar-sidebar-content' );
+genesis_unregister_layout( 'sidebar-content-sidebar' );
+
+
+//* Unregister Genesis sidebars
+// Remove default sidebar */
+remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
+// Remove secondary sidebar */
+//unregister_sidebar( 'header-right' );
+unregister_sidebar( 'sidebar' );
+unregister_sidebar( 'sidebar-alt' );
+
+
 //* Reduce the secondary navigation menu to one level depth
 function genesis_sample_secondary_menu_args( $args ) {
 
@@ -150,6 +167,8 @@ function add_more_buttons($buttons) {
  return $buttons;
 }
 add_filter("mce_buttons_3", "add_more_buttons");
+
+
 
 
 
@@ -218,12 +237,29 @@ function namespace_add_custom_types( $query ) {
 //add_action( 'genesis_before_header', 'genesis_do_nav' );
 
 // logo or text (chosen in theme customization)
-//remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
+// -- replaced with ours genexus_site_title
+remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 
 // tagline
 //remove_action( 'genesis_site_description', 'genesis_seo_site_description');
 
 
+
+// change site title (logo) to ours
+function genexus_site_title(){
+    ?>
+        <div class="hdr-nav-logo">
+            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-blue.png" class="logo"></a>
+        </div>
+    <?php
+}
+add_action( 'genesis_site_title', 'genexus_site_title' );
+
+
+
+
+
+// custom header
 function genexus_do_header(){
 
     global $post;
@@ -268,6 +304,8 @@ function genexus_do_header(){
 //add_action( 'genesis_header', 'genexus_do_header' );
 
 
+
+
 // CUSTOMIZE genesis_header_right (shows above default stuff in genesis_header_right)
 function genexus_header_right(){
 
@@ -298,6 +336,7 @@ add_action( 'genesis_header_right', 'genexus_header_right' );
 
 
 
+
 /**********************************************************/
 // CUSTOMIZE THE FOOTER
 remove_action( 'genesis_footer', 'genesis_do_footer' );
@@ -310,6 +349,101 @@ function genexus_footer() {
 }
 //add_action( 'genesis_footer', 'genexus_footer' );
 
+
+
+
+
+/**********************************************************/
+// ADD MOBILE NAV SLIDING MENU
+function genexus_mobile_nav() {
+    get_template_part( 'templates/mobile-nav' );
+}
+add_action( 'genesis_before_header', 'genexus_mobile_nav');
+
+
+
+
+
+/**********************************************************/
+// CUSTOM MOBILE MENU
+
+// Register our mobile menu 
+function register_mobile_menu() {
+  register_nav_menu('mobile-menu',__( 'Mobile Menu' ));
+}
+add_action( 'init', 'register_mobile_menu' );
+
+// Custom Nav Walker for our mobile menu
+class mobile_walker_nav_menu extends Walker_Nav_Menu {
+
+    // add classes to ul sub-menus
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+        // depth dependent classes
+        $indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1); // because it counts the first submenu as 0
+        $classes = array(
+            'sub-menu',
+            ( $display_depth % 2  ? 'menu-odd' : 'menu-even' ),
+            ( $display_depth >=2 ? 'sub-sub-menu' : '' ),
+            'menu-depth-' . $display_depth
+            );
+        $class_names = implode( ' ', $classes );
+
+        // build html
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
+
+    // add main/sub classes to li's and links
+     function start_el(  &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $wp_query;
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+
+        // depth dependent classes
+        $depth_classes = array(
+            ( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
+            ( $depth >=2 ? 'sub-sub-menu-item' : '' ),
+            ( $depth % 2 ? 'menu-item-odd' : 'menu-item-even' ),
+            'menu-item-depth-' . $depth
+        );
+        $depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+
+        // passed classes
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+
+        // build html
+        $output .= $indent . '<li id="nav-menu-item-'. $item->ID . '" class="' . ' ' . $class_names . '">';
+
+        // link attributes
+        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+        $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+        $attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link mobile-nav-item' : 'mobile-nav-top-item' ) . '"';
+        
+        //add data- attribute to submenu items
+        // we enter the data-filter attribute in the WP link item's "url" field since it isn't used normally
+        if($depth > 0){
+            // cant input a period for the value of the data-filter attr in the WP link item url, so we used a # instead
+            // need to replace the # with a .
+            $filter_data_val_raw = esc_attr( $item->url );
+            $filter_data_val = str_replace('#', '.', $filter_data_val_raw );
+            $attributes .= ' data-filter="' . $filter_data_val . '"';
+        }
+
+        $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+            $args->before,
+            $attributes,
+            $args->link_before,
+            apply_filters( 'the_title', $item->title, $item->ID ),
+            $args->link_after,
+            $args->after
+        );
+
+        // build html
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+}
 
 
 
@@ -339,7 +473,8 @@ function genexus_login_logo() {
     </style>
     <?php
 }
-add_action( 'login_enqueue_scripts', 'genexus_login_logo' );
+add_action( 'login_head', 'genexus_login_logo' );
+
 
 
 
@@ -536,4 +671,27 @@ function metaslider_permissions($capability) {
 add_filter( "metaslider_capability", "metaslider_permissions" );
 
 
-
+/**********************************************************/
+// BREADCRUMBS
+//* Modify breadcrumb arguments.
+add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args' );
+function sp_breadcrumb_args( $args ) {
+    $args['home'] = 'Home';
+    $args['sep'] = ' / ';
+    $args['list_sep'] = ', '; // Genesis 1.5 and later
+    $args['prefix'] = '<div class="breadcrumb">';
+    $args['suffix'] = '</div>';
+    $args['heirarchial_attachments'] = true; // Genesis 1.5 and later
+    $args['heirarchial_categories'] = true; // Genesis 1.5 and later
+    $args['display'] = true;
+    $args['labels']['prefix'] = '';
+    $args['labels']['author'] = 'Archives for ';
+    $args['labels']['category'] = 'Archives for '; // Genesis 1.6 and later
+    $args['labels']['tag'] = 'Archives for ';
+    $args['labels']['date'] = 'Archives for ';
+    $args['labels']['search'] = 'Search for ';
+    $args['labels']['tax'] = 'Archives for ';
+    $args['labels']['post_type'] = 'Archives for ';
+    $args['labels']['404'] = 'Not found: '; // Genesis 1.5 and later
+return $args;
+}

@@ -1,18 +1,42 @@
-// max width for containers (sets default for outer-container mixin)
+// CUSTOMIZE DEFAULT VARS ------------------------------
+
+// sets default for outer-container mixin
 $max-width: 1600px;
 
+// $column: 90px;
+// $gutter: 10px;
+// $grid-columns: 12
 
-// Breakpoints and Media Queries
-$bp-sm:          544px;
-$bp-md:          768px;
-$bp-lg:          992px;
-$bp-xl:          1200px;
 
-$sm-screen: new-breakpoint(max-width $bp-sm);
-$md-screen: new-breakpoint(max-width $bp-md);
-$lg-screen: new-breakpoint(max-width $bp-lg);
-$xl-screen: new-breakpoint(max-width $bp-xl);
 
+// GRID BREAKPOINTS AND MEDIA QUERIES ------------------------------------------
+// Breakpoints
+$bp-xs:          544px;
+$bp-sm:          768px;
+$bp-md:          992px;
+$bp-lg:          1200px;
+
+// Media Queries with 1 breakpoint
+$xs-screen: new-breakpoint(max-width em($bp-xs));
+$sm-screen: new-breakpoint(max-width em($bp-sm));
+$md-screen: new-breakpoint(max-width em($bp-md));
+$lg-screen: new-breakpoint(max-width em($bp-lg));
+$xl-screen: new-breakpoint(min-width em($bp-lg + 1));
+
+// Media Queries with MIN & MAX breakpoints
+// 0 - 543px  
+$screen-0-to-xs: new-breakpoint(max-width em($bp-xs - 1));
+// 544 - 767 
+$screen-xs-to-sm: new-breakpoint(min-width em($bp-xs) max-width em($bp-sm - 1));
+// 768 - 991  
+$screen-sm-to-md: new-breakpoint(min-width em($bp-sm) max-width em($bp-md - 1));
+// 992 - 1199 
+$screen-md-to-lg: new-breakpoint(min-width em($bp-md) max-width em($bp-lg - 1));
+// 1200+
+$screen-lg-to-infinity: new-breakpoint(min-width em($bp-lg));
+
+
+// ETC ----------------------------------------
 
 // Typography
 $base-font-family: $font-stack-system;

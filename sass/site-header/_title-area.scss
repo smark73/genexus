@@ -1,8 +1,28 @@
 /* ## Title Area
 --------------------------------------------- */
 
-.title-area,
-.our-title-area {
+.title-area {
+
+	.hdr-nav-logo {
+
+		a {
+			display: block;
+
+			//center on sm
+			@include media($sm-screen){
+				text-align: center;
+				margin: auto;
+				max-height: 80px;
+			}
+
+			//logo img responsive within container
+			img.logo {
+				max-width: 200px;
+				height:auto;
+			}
+		}
+	}
+
 
 	> .site-title {
 		// directly target logo 
@@ -12,7 +32,7 @@
 			background-size: contain !important;
 
 			//center on sm
-			@include media($md-screen){
+			@include media($sm-screen){
 				background-position: center !important;
 			}
 
@@ -21,7 +41,7 @@
 
 	@include span-columns(6);
 
-	@include media($md-screen){
+	@include media($sm-screen){
 		@include span-columns(12);
 		text-align: center;
 	}
@@ -45,7 +65,7 @@
 	font-weight: 900;
 	line-height: 1.2;
 
-	@include media($md-screen){
+	@include media($sm-screen){
 		@include span-columns(12);
 
 		text-align: center;

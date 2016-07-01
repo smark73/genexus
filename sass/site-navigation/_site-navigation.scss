@@ -93,3 +93,13 @@
 .genesis-nav-menu > .search {
 	padding: 10px 0 0;
 }
+
+
+// hide on mobile screens
+nav.nav-primary {
+
+	@include media($md-screen){
+		@include visuallyhidden();
+	}
+
+}

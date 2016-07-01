@@ -79,3 +79,12 @@
     }
 
 
+    // MOBILE NAV BTN
+    // shows on sm screens (< md-screen) when regular nav hides
+    ?>
+    <button type="button" class="mobile-nav-btn js-menu-trigger">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    <?php
+
+

@@ -37,6 +37,16 @@ var GenexusSite = {
                     $sBar.toggleClass('search-hide search-show');
 
                 });
+
+
+                // MOBILE SLIDING NAV
+                // code from sliding panel component from bourbon refills
+                $('.mobile-nav-btn,.sliding-panel-fade-screen,.sliding-panel-close').on('click touchstart',function (e) {
+                    $('.sliding-panel-content,.sliding-panel-fade-screen').toggleClass('is-visible');
+                    e.preventDefault();
+                });
+
+
             });
         });
         

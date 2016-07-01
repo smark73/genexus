@@ -20,9 +20,9 @@ nav {
 // Navigation toggles - Normal Menu
 //--------------------------------------------- 
 @media only screen and (min-width: ($bp-md + 1)) {
-	nav {
-		display: block !important;
-	}
+	//nav {
+	//	display: block !important;
+	//}
 }
 
 
@@ -96,10 +96,10 @@ nav {
 		font-size: 2em;
 	}
 
-	nav {
-		display: none;
-		position: relative;
-	}
+	// nav {
+	// 	display: none;
+	// 	position: relative;
+	// }
 
 	.genesis-nav-menu .menu-item {
 		color: #fff;

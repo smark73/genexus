@@ -16,6 +16,12 @@ body {
 
 	@include outer-container;
 
+
+	.content,
+	.sidebar {
+		padding: 2%;
+	}
+
 	clear: both;
 	padding-top: 40px;
 }
