@@ -269,11 +269,24 @@ remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 
 // change site title (logo) to ours
 function genexus_site_title(){
-    ?>
+
+    global $post;
+
+    // KAFF NEWS
+    if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) : ?>
+                
+        <div class="hdr-nav-logo kaff-news-hdr">
+            <a href="/kaff-news"><img src="<?php echo get_stylesheet_directory_uri();?>/images/kaff-news-logo.png"></a>
+        </div>
+
+    <?php else :
+    // GCMAZ HEADER ?>
+    
         <div class="hdr-nav-logo">
             <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
         </div>
-    <?php
+
+    <?php endif;
 }
 add_action( 'genesis_site_title', 'genexus_site_title' );
 
@@ -282,49 +295,37 @@ add_action( 'genesis_site_title', 'genexus_site_title' );
 
 
 // custom header
-function genexus_do_header(){
+function custom_header() {
 
     global $post;
 
-    ?>
-    <div class="our-title-area">
+    if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) {
 
-        <?php //===== LOGO ===== ?>
-        <div class="hdr-nav-logo">
-            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
-        </div>
+        //remove default page header
+        remove_action( 'genesis_header', 'genesis_do_header' );
 
-        <?php //===== ICONS ===== ?>
-        <span class="hdr-nav-icons">
-            <?php get_template_part( 'templates/hdr-nav-icons' ); ?>
-        </span>
+        function custom_do_header(){
 
-    </div>
+            ?>
+            <div class="title-area">
 
-    <div class="search-wrap">
-
-        <?php //===== SEARCH ===== ?>
-        <div class="genexus-search-area search-hide hidden">
-            <form class="genexus-search-area-form" itemprop="potentialAction" itemscope="" itemtype="http://schema.org/SearchAction" method="get" action="<?php echo home_url('/'); ?>" role="search">
-                <div class="row">
-                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 search-left">
-                        <meta itemprop="target" content="<?php echo home_url('/'); ?>?s={s}">
-                        <input itemprop="query-input" type="search" name="s" placeholder="Search" class="search-field">
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 search-right">
-                        <button type="submit" class="genexus-search-btn">Search</button>
-                    </div>
+                <?php //===== LOGO ===== ?>
+                <div class="hdr-nav-logo">
+                    <a href="/kaff-news"><img src="<?php echo get_stylesheet_directory_uri();?>/images/kaff-news-logo.png"></a>
                 </div>
-            </form>
-        </div>
 
-    </div>
+            </div>
 
-    <?php
+
+            <?php
+
+        }
+
+        add_action( 'genesis_header', 'custom_do_header' );
+    }
 
 }
-//add_action( 'genesis_header', 'genexus_do_header' );
-
+//add_action( 'wp', 'custom_header' );
 
 
 
