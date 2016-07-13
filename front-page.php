@@ -19,13 +19,8 @@
 
 
 
-// custom page header
-//add_action( 'genesis_before_header', 'gcmaz_pg_hdr' );
-function gcmaz_pg_hdr() {
-    ?>
-        <h1 class="centered">Page Take Over Area</h1>
-    <?php
-}
+//
+
 
 
 function page_loop(){
@@ -56,13 +51,6 @@ function page_loop(){
     <?php
 }
 
-
-//add_action('genesis_after_footer', 'add_scripts_to_btm');
-function add_scripts_to_btm() {
-    ?>
-        <script type="text/javascript" src="/wp-content/themes/gcmaz2016/assets/js/dist/main.min.js"></script>
-    <?php
-}
 
 
 // genesis child theme

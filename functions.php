@@ -8,6 +8,13 @@
  *
  */
 
+
+// NEED TO DO
+
+// build PTO plugin
+
+
+
 //* Start the engine
 include_once( get_template_directory() . '/lib/init.php' );
 
@@ -92,13 +99,13 @@ add_theme_support( 'genesis-accessibility', array( '404-page', 'drop-down-menu',
 add_theme_support( 'genesis-responsive-viewport' );
 
 //* Add support for custom header
-add_theme_support( 'custom-header', array(
-	'width'           => 600,
-	'height'          => 160,
-	'header-selector' => '.site-title a',
-	'header-text'     => false,
-	'flex-height'     => true,
-) );
+// add_theme_support( 'custom-header', array(
+// 	'width'           => 600,
+// 	'height'          => 160,
+// 	'header-selector' => '.site-title a',
+// 	'header-text'     => false,
+// 	'flex-height'     => true,
+// ) );
 
 //* Add support for custom background
 add_theme_support( 'custom-background' );
@@ -150,6 +157,21 @@ function genesis_sample_secondary_menu_args( $args ) {
 
 }
 add_filter( 'wp_nav_menu_args', 'genesis_sample_secondary_menu_args' );
+
+
+
+// Tell WP to use our Superfish JS arguments instead of defaults
+/**
+* Filter in URL for custom Superfish arguments.
+* @author Gary Jones
+* @link http://code.garyjones.co.uk/change-superfish-arguments
+* @param string $url Existing URL.
+* @return string Amended URL.
+*/
+function prefix_superfish_args_url( $url ) {
+    return get_stylesheet_directory_uri() . '/js/superfish-args.min.js';
+}
+add_filter( 'genesis_superfish_args_url', 'prefix_superfish_args_url' );
 
 
 
@@ -249,7 +271,7 @@ remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 function genexus_site_title(){
     ?>
         <div class="hdr-nav-logo">
-            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-blue.png" class="logo"></a>
+            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
         </div>
     <?php
 }
@@ -269,7 +291,7 @@ function genexus_do_header(){
 
         <?php //===== LOGO ===== ?>
         <div class="hdr-nav-logo">
-            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-blue.png" class="logo"></a>
+            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
         </div>
 
         <?php //===== ICONS ===== ?>
@@ -334,6 +356,18 @@ function genexus_header_right(){
 add_action( 'genesis_header_right', 'genexus_header_right' );
 
 
+
+//PAGE TAKEOVER
+// if enabled, call this function
+
+// if( page_takeover() ) {
+//     function page_takeover_hdr() {
+//         ?  >
+//             <h1 class="centered">Page Take Over Area</h1>
+//         < ?  php
+//     }
+//     add_action( 'genesis_before_header', 'page_takeover_hdr' );
+// }
 
 
 

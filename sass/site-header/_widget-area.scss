@@ -43,7 +43,7 @@
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    color: $red;
+    color: $hdr-nav-icons-color;
     font-size:20px;
     font-weight: 700;
     border: 1px solid transparent;
@@ -52,7 +52,7 @@
   a.icon-user,
   a.icon-search {
     &:hover {
-      background: $neutral-tan;
+      background: $hdr-nav-icons-bg-color;
     }
   }
 
@@ -111,14 +111,15 @@
   ul.dropdown{
 
     li {
-      background: $neutral-tan;
-      border-bottom: 1px solid darken($neutral-tan, 3%);
+      background: $hdr-nav-icons-bg-color;
+      border-bottom: 1px solid darken($hdr-nav-icons-bg-color, 3%);
       padding: 5px;
       margin: 0;
 
       a {
         text-decoration: none;
         font-size: 0.8em;
+        color: $white;
       }
 
     }
@@ -137,7 +138,7 @@
   }
 
   &:hover {
-    background: darken($neutral-tan, 3%);
+    background: darken($hdr-nav-icons-bg-color, 3%);
   }
 
 }

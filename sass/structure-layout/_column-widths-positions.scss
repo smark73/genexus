@@ -15,7 +15,7 @@
 	@include omega;
 
 	float: right;
-	border: 1px solid red;
+	//border: 1px solid red;
 
 	@include media($md-screen){
 		@include span-columns(12);
@@ -43,7 +43,7 @@
 	float: right;
 	//width: 360px;
 
-	border: 1px solid green;
+	//border: 1px solid green;
 
 	@include media($md-screen){
 		@include span-columns(12);

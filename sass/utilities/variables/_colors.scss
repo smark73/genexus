@@ -1,4 +1,8 @@
-// Colors
+// Color Variables
+
+// ************************************************************
+// COLORS
+// ************************************************************
 $color-alto: #ddd;
 $color-black: #000;
 $color-cod-gray: #111;
@@ -26,8 +30,8 @@ $black:				$color-black;
 
 // blues
 $blue:			 	#3853a4; // default gcm blue
-$light-blue:		#4485f5;
-$med-blue:			#3879e8;
+$light-blue:		#4589ff;
+$med-blue:			#2e6fdd;
 $dark-blue:			#203062;
 
 $red:				#c00;
@@ -62,3 +66,106 @@ $ktmg-block-color: #39f;
 $knot-block-color: #fcfcfb;
 $widget-title-color: #6b6b6b;
 
+
+
+
+// *****************************************************************
+// MENU COLORS
+// ****************************************************************
+
+// Init Defaults (override below);
+$default-menu-text-color: $gray-dark !default;
+$default-submenu-text-color: $gray !default;
+$default-menu-text-color-hover: $red !default;
+$default-menu-bg-color: $neutral-tan !default;
+$default-menu-bg-color-underline: $red !default;
+
+
+//------------------------------------
+// TEXT
+//------------------------------------
+// **** Regular Menu
+// Defaults
+$menu-text-color: $default-menu-text-color;
+$menu-text-sub-color: $default-submenu-text-color;
+// Hover
+$menu-text-color-hover: $default-menu-text-color-hover;
+
+// **** Mobile Menu
+// Defaults
+$sliding-panel-color: $default-menu-text-color;
+// submenu items
+$sliding-panel-sub-color: $default-submenu-text-color;
+// Hover
+$sliding-panel-color-hover: $default-menu-text-color-hover;
+
+
+//----------------------------------------
+// BACKGROUND
+//------------------------------------
+// **** Regular Menu
+// Defaults
+$menu-bg-color: $default-menu-bg-color;
+$menu-bg-color-hover: darken($menu-bg-color, 5%);
+$menu-bg-color-underline: $default-menu-bg-color-underline;
+// Hover
+// Focus
+
+// **** Mobile
+$sliding-panel-background: darken($default-menu-bg-color, 10%);
+// Hover
+$sliding-panel-background-hover: darken($sliding-panel-background, 3%);
+// Focus
+//$sliding-panel-background-focus: lighten($sliding-panel-background, 5%);
+
+
+// -------------------------------------
+// CURRENT ITEM
+// -------------------------------------
+// **** Regular Menu
+$cur-menu-item: $red;
+//$cur-menu-border-left: $red;
+
+// **** Mobile Menu
+
+
+// -------------------------------------
+// BORDERS
+// -------------------------------------
+// **** Regular
+$menu-border-color: darken($menu-bg-color, 5%);
+// **** Mobile
+$sliding-panel-border-color: darken($sliding-panel-background, 5%);
+
+
+
+// -------------------------------
+// TOGGLE BTN
+// -------------------------------------
+$menu-toggle-color: $red;
+
+
+
+
+
+
+// ********************************************************************
+// SITE HEADER
+// ********************************************************************
+
+// .site-header has ...
+   // @include background-image(url('images/pg-hdr.png'), linear-gradient($site-hdr-grad-top, $site-hdr-grad-btm 100%));
+
+// to customize
+// create pg-hdr.png and put in /images dir
+// change colors for bg gradient
+
+$site-hdr-grad-top: $dark-blue;
+$site-hdr-grad-btm: $light-blue; //darken($neutral-tan, 5%);
+
+
+
+// WIDGET AREA (HDR-NAVICONS)
+
+$hdr-nav-icons-color: $white;
+$hdr-nav-icons-bg-color: $red;
