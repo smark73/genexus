@@ -21,23 +21,23 @@
 
 
 //define breakpoints
-$break-sm:          544px;
-$break-md:          768px;
-$break-lg:          992px;
-$break-xl:          1200px;
+//$break-sm:          544px;
+//$break-md:          768px;
+//$break-lg:          992px;
+//$break-xl:          1200px;
 
 
 //define col sizes based on break points
-$col-xs-max:        ($break-sm - 1);   //0-543
+//$col-xs-max:        ($break-sm - 1);   //0-543
 
-$col-sm-min:        $break-sm;         //544
-$col-sm-max:        ($break-md - 1);   //767
+//$col-sm-min:        $break-sm;         //544
+//$col-sm-max:        ($break-md - 1);   //767
 
-$col-md-min:        $break-md;         //768
-$col-md-max:        ($break-lg - 1);   //991
+//$col-md-min:        $break-md;         //768
+//$col-md-max:        ($break-lg - 1);   //991
 
-$col-lg-min:        $break-lg;         //992
-$col-lg-max:        ($break-xl - 1);   //1199
+//$col-lg-min:        $break-lg;         //992
+//$col-lg-max:        ($break-xl - 1);   //1199
 
-$col-xl-min:        $break-xl;         //1200+
+//$col-xl-min:        $break-xl;         //1200+
 

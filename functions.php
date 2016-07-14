@@ -267,12 +267,12 @@ remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 
 
 
-// change site title (logo) to ours
+// Change site title (logo / "header left") to ours
 function genexus_site_title(){
 
     global $post;
 
-    // KAFF NEWS
+    //====== KAFF NEWS HDR ======//
     if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) : ?>
                 
         <div class="hdr-nav-logo kaff-news-hdr">
@@ -280,7 +280,7 @@ function genexus_site_title(){
         </div>
 
     <?php else :
-    // GCMAZ HEADER ?>
+    //====== GCMAZ (DEFAULT) HDR ======// ?>
     
         <div class="hdr-nav-logo">
             <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
@@ -292,56 +292,19 @@ add_action( 'genesis_site_title', 'genexus_site_title' );
 
 
 
-
-
-// custom header
-function custom_header() {
-
-    global $post;
-
-    if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) {
-
-        //remove default page header
-        remove_action( 'genesis_header', 'genesis_do_header' );
-
-        function custom_do_header(){
-
-            ?>
-            <div class="title-area">
-
-                <?php //===== LOGO ===== ?>
-                <div class="hdr-nav-logo">
-                    <a href="/kaff-news"><img src="<?php echo get_stylesheet_directory_uri();?>/images/kaff-news-logo.png"></a>
-                </div>
-
-            </div>
-
-
-            <?php
-
-        }
-
-        add_action( 'genesis_header', 'custom_do_header' );
-    }
-
-}
-//add_action( 'wp', 'custom_header' );
-
-
-
-// CUSTOMIZE genesis_header_right (shows above default stuff in genesis_header_right)
+// Customize genesis_header_right (shows above default stuff in genesis_header_right)
 function genexus_header_right(){
 
     global $post;
     ?>
 
-	<?php //===== HDR NAV ICONS ===== ?>
+	<?php //===== HDR NAV ICONS =====// ?>
 	<div class="hdr-nav-icons">
 	    <?php get_template_part( 'templates/hdr-nav-icons' ); ?>
 	</div>
 
 
-	<?php //===== SEARCH SHOW/HIDE ===== ?>
+	<?php //===== SEARCH SHOW/HIDE =====// ?>
     <div class="searchbar search-hide hide-me">
         <form class="searchbar-form hide-me" itemprop="" itemscope="" itemtype="http://schema.org/SearchAction" method="get" action="<?php echo home_url('/'); ?>" role="search">
             <meta itemprop="target" content="<?php echo home_url('/'); ?>?s={s}">
@@ -355,6 +318,31 @@ function genexus_header_right(){
 
 }
 add_action( 'genesis_header_right', 'genexus_header_right' );
+
+
+
+// ****** NOT USED ************
+// custom header
+function custom_header() {
+    global $post;
+    if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) {
+        //remove default page header
+        remove_action( 'genesis_header', 'genesis_do_header' );
+        function custom_do_header(){
+            ?>
+            <div class="title-area">
+                <?php //===== LOGO ===== ?>
+                <div class="hdr-nav-logo">
+                    <a href="/kaff-news"><img src="<?php echo get_stylesheet_directory_uri();?>/images/kaff-news-logo.png"></a>
+                </div>
+            </div>
+            <?php
+        }
+        add_action( 'genesis_header', 'custom_do_header' );
+    }
+}
+//add_action( 'wp', 'custom_header' );
+// ****** END ******************
 
 
 
@@ -374,15 +362,22 @@ add_action( 'genesis_header_right', 'genexus_header_right' );
 
 /**********************************************************/
 // CUSTOMIZE THE FOOTER
+
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 
 function genexus_footer() {
-    if ( ! is_page( 'some-page-we-dont-want-this-fn-on' ) ){
-    	get_template_part( 'templates/ftr-main' );
-		wp_footer();
+    if ( is_page( 'some-page-we-dont-want-this-ftr-on' ) ){
+    	//some other footer
+		//wp_footer();
+    } else {
+    ?>
+    
+    <p class="copyright" data-enhance="false" data-role="none"><?php echo do_shortcode( '[footer_copyright]');?> <a href="/" data-enhance="false" data-role="none">Great Circle Media</a> &middot; All Rights Reserved.
+    
+    <?php
     }
 }
-//add_action( 'genesis_footer', 'genexus_footer' );
+add_action( 'genesis_footer', 'genexus_footer' );
 
 
 

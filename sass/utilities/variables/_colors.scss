@@ -25,8 +25,6 @@ $gray:                   lighten($gray-base, 33.5%) !default; // #555
 $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$white:				$color-white;
-$black:				$color-black;
 
 // blues
 $blue:			 	#3853a4; // default gcm blue
@@ -167,5 +165,18 @@ $site-hdr-grad-btm: $light-blue; //darken($neutral-tan, 5%);
 
 // WIDGET AREA (HDR-NAVICONS)
 
-$hdr-nav-icons-color: $white;
+$hdr-nav-icons-color: $color-white;
 $hdr-nav-icons-bg-color: $red;
+
+
+// ********************************************************************
+// SITE FOOTER
+// ********************************************************************
+
+// background
+$site-ftr-grad-top: $blue;
+$site-ftr-grad-btm: $light-blue;
+
+// fonts
+$ftr-text: $neutral-tan;
+$ftr-text-hover: $color-white;
