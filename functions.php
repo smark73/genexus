@@ -272,18 +272,18 @@ function genexus_site_title(){
 
     global $post;
 
-    //====== KAFF NEWS HDR ======//
-    if( $post->post_name === 'kaff-news' || in_category( check_current_category_for_news() ) || $post->post_name == 'about-kaff-news' || $post->post_name == 'contact-kaff-news' ) : ?>
+    //====== OTHER HDR ======//
+    if( $some_test_condition === true ) :  ?>
                 
-        <div class="hdr-nav-logo kaff-news-hdr">
-            <a href="/kaff-news"><img src="<?php echo get_stylesheet_directory_uri();?>/images/kaff-news-logo.png"></a>
+        <div class="some-other-logo-header">
+            <a href="/"><img src="<?php echo get_stylesheet_directory_uri(); //default as placeholder ?>/images/genexus-logo.png" class="logo"></a>
         </div>
 
     <?php else :
-    //====== GCMAZ (DEFAULT) HDR ======// ?>
+    //====== DEFAULT HDR ======// ?>
     
         <div class="hdr-nav-logo">
-            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/gcm-logo-white.png" class="logo"></a>
+            <a href="/"><img src="<?php echo get_stylesheet_directory_uri();?>/images/genexus-logo.png" class="logo"></a>
         </div>
 
     <?php endif;
@@ -346,18 +346,59 @@ function custom_header() {
 
 
 
-//PAGE TAKEOVER
-// if enabled, call this function
+/**********************************************************/
+// PAGE TAKEOVER
+/**********************************************************/
 
-// if( page_takeover() ) {
-//     function page_takeover_hdr() {
-//         ?  >
-//             <h1 class="centered">Page Take Over Area</h1>
-//         < ?  php
-//     }
-//     add_action( 'genesis_before_header', 'page_takeover_hdr' );
-// }
+// get the ptko options array
+$ptko_settings = get_option('ptko_settings');
 
+// check if page take over is enabled 
+if( $ptko_settings['ptko_toggle'] === 1 ){
+    
+    // create new styles and put in head
+    //add_action( 'wp_head', 'ptko_styles' );
+    function ptko_styles(){
+        $ptko_settings = get_option('ptko_settings');
+        $bgcolor = esc_attr($ptko_settings['ptko_bgcolor']);
+        $bgimg = esc_url($ptko_settings['ptko_bgimg']);
+        $newstyles = "
+            <style type='text/css'>
+            .takeover{background:$bgcolor;background-image: url('$bgimg');background-position:center 102px;background-repeat:no-repeat;}
+            @media (max-width: 767px) { .takeover{background:$bgcolor;}
+            </style>
+        ";
+        echo $newstyles;
+    }
+
+    // add takeover class to body
+    //add_filter('body_class', 'add_takeover_body_class');
+    function add_takeover_body_class($classes){
+        $classes[] = 'takeover';
+        return $classes;
+    }
+
+    // add takeover header
+    //add_action('display_ptko', 'ptko_inc_hdr');
+    function ptko_inc_hdr($ptko_settings){
+        get_template_part('templates/takeover-hdr');
+    }
+
+
+    // 2016 PTO
+    function page_takeover_hdr() {
+        $ptko_settings = get_option('ptko_settings');
+        ?>
+            <div class="takeover" style="background:<?php echo esc_attr($ptko_settings['ptko_bgcolor']);?>">
+                <a href="<?php echo esc_url( $ptko_settings['ptko_link'] );?>" target="_blank" rel="nofollow">
+                    <img src="<?php echo esc_url( $ptko_settings['ptko_hdrimg'] );?>">
+                </a>
+            </div>
+        <?php
+    }
+    add_action( 'genesis_before_header', 'page_takeover_hdr' );
+
+}
 
 
 /**********************************************************/
@@ -382,26 +423,41 @@ add_action( 'genesis_footer', 'genexus_footer' );
 
 
 
-
 /**********************************************************/
-// ADD MOBILE NAV SLIDING MENU
+// CUSTOM MOBILE MENU
+
+// Add the template
 function genexus_mobile_nav() {
     get_template_part( 'templates/mobile-nav' );
 }
 add_action( 'genesis_before_header', 'genexus_mobile_nav');
 
 
+// Create the mobile menu 
+$menu_name = 'Mobile Menu';
+$menu_exists = wp_get_nav_menu_object( $menu_name );
 
+//if doesn't exist, create it
+if( ! $menu_exists ){
+    $menu_id = wp_create_nav_menu( $menu_name );
 
+    //set default items
+    // Home Page (repeat for other items)
+    wp_update_nav_menu_item( $menu_id, 0, array(
+        'menu-item-title' => __('Home'),
+        'menu-item-classes' => 'home',
+        'menu-item-url' => home_url('/'),
+        'menu-item-status' => 'publish'
+        ));
+}
 
-/**********************************************************/
-// CUSTOM MOBILE MENU
 
 // Register our mobile menu 
 function register_mobile_menu() {
   register_nav_menu('mobile-menu',__( 'Mobile Menu' ));
 }
 add_action( 'init', 'register_mobile_menu' );
+
 
 // Custom Nav Walker for our mobile menu
 class mobile_walker_nav_menu extends Walker_Nav_Menu {
@@ -494,7 +550,7 @@ function genexus_login_logo() {
             width:500px !important;
         }
         .login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri();?>/assets/img/all-logos-gcm.png) !important;
+            background-image: url(<?php echo get_stylesheet_directory_uri();?>/images/genexus-logo.png) !important;
             width:500px !important;
             height:100px !important;
             background-size:contain !important;
