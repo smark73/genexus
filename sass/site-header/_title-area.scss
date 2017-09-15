@@ -9,7 +9,7 @@
 			display: block;
 
 			//center on sm
-			@include media($sm-screen){
+			@include grid-media($gx-grid-sm){
 				text-align: center;
 				margin: auto;
 				max-height: 80px;
@@ -32,17 +32,17 @@
 			background-size: contain !important;
 
 			//center on sm
-			@include media($sm-screen){
+			@include grid-media($gx-grid-sm){
 				background-position: center !important;
 			}
 
 		}
 	}
 
-	@include span-columns(6);
+	@include grid-column(6);
 
-	@include media($sm-screen){
-		@include span-columns(12);
+	@include grid-media($gx-grid-sm){
+		@include grid-column(12);
 		text-align: center;
 	}
 
@@ -65,8 +65,8 @@
 	font-weight: 900;
 	line-height: 1.2;
 
-	@include media($sm-screen){
-		@include span-columns(12);
+	@include grid-media($gx-grid-sm){
+		@include grid-column(12);
 
 		text-align: center;
 		margin:auto;

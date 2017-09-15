@@ -8,20 +8,17 @@ body {
 .site-inner,
 .wrap {
 
-	@include outer-container;
+	@include grid-container;
+	//@include grid-collapse;
 	
 }
 
 .site-inner {
-
-	@include outer-container;
-
 
 	.content,
 	.sidebar {
 		padding: 2%;
 	}
 
-	clear: both;
 	padding-top: 40px;
 }

@@ -11,14 +11,14 @@
 
 .content {
 	// .sidebar-content .content
-	@include span-columns(8);
-	@include omega;
+	@include grid-column(8);
+	//@include omega;
 
 	float: right;
 	//border: 1px solid red;
 
-	@include media($md-screen){
-		@include span-columns(12);
+	@include grid-media($gx-grid-md){
+		@include grid-column(12);
 	}
 }
 
@@ -38,15 +38,15 @@
 
 .sidebar-primary {
 
-	@include span-columns(4);
-	@include omega;
+	@include grid-column(4);
+	//@include omega;
 	float: right;
 	//width: 360px;
 
 	//border: 1px solid green;
 
-	@include media($md-screen){
-		@include span-columns(12);
+	@include grid-media($gx-grid-md){
+		@include grid-column(12);
 	}
 }
 

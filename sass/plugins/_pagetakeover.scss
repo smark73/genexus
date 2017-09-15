@@ -19,7 +19,7 @@
 	padding: 10px 0;
 	background: $neutral-tan-lt;
 
-	@include media($sm-screen) {
+	@include grid-media($gx-grid-sm) {
 		margin: 0 auto;
 	}
 

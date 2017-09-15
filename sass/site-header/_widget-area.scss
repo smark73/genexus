@@ -7,14 +7,14 @@
 // WIDGET AREA
 .site-header .widget-area {
 
-	@include span-columns(6);
+	@include grid-column(6);
 
 	text-align: left;
 	padding: 10px;
 
-	@include media($sm-screen){
+	@include grid-media($gx-grid-sm){
 
-		@include span-columns(12);
+		@include grid-column(12);
 
 		text-align: center;
 		margin:auto;
@@ -26,8 +26,8 @@
 //HEADER NAV ICONS
 .hdr-nav-icons {
 
-  @include span-columns(6);
-  @include fill-parent();
+  //@include grid-column(12);
+  //@include fill-parent();
 
   a.icon-user,
   a.icon-search,
@@ -74,7 +74,7 @@
   margin: auto;
   display: block;
 
-  @include media ($sm-screen) {
+  @include grid-media($gx-grid-sm) {
 
     a.icon-user,
     a.icon-search,
@@ -131,7 +131,7 @@
     text-align: left;
 
     // change pos from 60 to 40 on sm screen
-    @include media($sm-screen){
+    @include grid-media($gx-grid-sm){
       top: 50px;
     }
 
@@ -159,13 +159,13 @@
 //the search bar (show/hide bar)
 .searchbar {
 
-  @include fill-parent();
+  //@include fill-parent();
 
   // style the form - taken from Refills example
   form.searchbar-form {
     ///////////////////////////////////////////////////////////////////////////////////
     $base-spacing: 1.5em !default;
-    $base-border-color: gainsboro !default;
+    $base-border-color: $gray-light !default;
     $base-line-height: 1.5em !default;
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -177,7 +177,7 @@
 
     input[type=search] {
       appearance: none;
-      background-color: white;
+      background-color: $color-white;
       border: 1px solid $base-border-color;
       box-sizing: border-box;
       display: block;
