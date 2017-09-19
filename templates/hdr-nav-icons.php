@@ -63,18 +63,18 @@
     // (checks and displays KAFF News social icons on kaff news pages)
     if( !empty( $post ) ){
 
-        if( $post->post_name == 'kaff-news' || in_category( check_current_category_for_news() ) ) {
+        //if( $post->post_name == 'kaff-news' || in_category( check_current_category_for_news() ) ) {
         ?>
         
-            <a href="https://www.facebook.com/NewsOnKAFF" target="_blank" class="icon-fb" title="KAFF News Facebook">
+            <a href="https://www.facebook.com/#" target="_blank" class="icon-fb" title="#">
                 <i class="fa fa-facebook"></i>
             </a>
-            <a href="https://twitter.com/kaffnews" target="_blank" class="icon-tw" title="KAFF News Twitter">
+            <a href="https://twitter.com/#" target="_blank" class="icon-tw" title="#">
                 <i class="fa fa-twitter"></i>
             </a>
         
         <?php
-        }
+        //}
 
     }
 

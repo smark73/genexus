@@ -40,8 +40,11 @@ $neutral-tan-lt:	#f5f3f1;
 $neutral-tan-dk:	#a9a39a;
 $blue-gray-lt:		#edeff9;
 
-$brand-primary:         $blue !default;
-$brand-success:         $red !default;
+$kaff-blue: 		#2e4b9e;
+$kaff-red: 			#ed1e24;
+
+$brand-primary:         $kaff-blue !default;
+$brand-success:         $kaff-red !default;
 $brand-info:            $blue !default;
 $brand-warning:         $yellow !default;
 $brand-danger:          $yellow !default;

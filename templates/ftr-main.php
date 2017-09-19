@@ -1,18 +1,18 @@
-<footer class="pg-ftr content-info container row" role="contentinfo">
-    <section class="ftr1 col-xs-12 col-sm-6 col-md-3 col-lg-3">
-        <ul class="ftr-links-list centered">
+<footer class="pg-ftr">
+    <section class="ftr1">
+        <ul class="ftr-links-list">
             <li><span class="glyphicon glyphicon-home"></span><a href="/">Home</a></li>
             <li><span class="glyphicon glyphicon-earphone"></span><a href="/contact-great-circle-media">Contact Us</a></li>
             <li><span class="glyphicon glyphicon-th-large"></span><a href="/kaff-news/">KAFF News</a></li>
         </ul>
     </section>
     
-    <section class="ftr2 col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <section class="ftr2">
         <?php dynamic_sidebar('sidebar-footer'); ?>
     </section>
 
-    <section class="ftr3 col-xs-12 col-sm-12 col-md-3 col-lg-3 text-center">
-        <div class="clearfix"></div>
+    <section class="ftr3">
+
         <a href="/"><img src="/media/logo-gcmaz.png" alt="Great Circle Media Arizona" style="width:125px;height:auto"/></a>
         <p class="copyright">&copy; Great Circle Media. All Rights Reserved</p>
         <p>
@@ -24,4 +24,3 @@
         </p>
     </section>
 </footer>
-<div class="clear-fix"><br/></div>

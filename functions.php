@@ -135,6 +135,8 @@ genesis_unregister_layout( 'sidebar-sidebar-content' );
 genesis_unregister_layout( 'sidebar-content-sidebar' );
 
 
+// SIDEBARS
+
 //* Unregister Genesis sidebars
 // Remove default sidebar */
 remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
@@ -144,6 +146,41 @@ unregister_sidebar( 'sidebar' );
 unregister_sidebar( 'sidebar-alt' );
 
 
+
+// Register Our Sidebars
+// local pages (community/whats/concerts) sidebar
+// genesis_register_sidebar( array(
+//     'id' => 'sidebar-local',
+//     'name' => 'Local Pages Sidebar',
+//     'description' => 'Local Pages Sidebar',
+// ));
+
+// primary (common) sidebar
+genesis_register_sidebar( array(
+    'id' => 'sidebar-primary',
+    'name' => 'Primary Sidebar',
+    'description' => 'Primary Sidebar',
+));
+
+// Home sidebar
+genesis_register_sidebar( array(
+    'id' => 'sidebar-homepage',
+    'name' => 'Home Page Sidebar',
+    'description' => 'Home Page Sidebar',
+));
+
+
+// Tell Genesis to use our custom sidebar based on category/page/etc
+// the tpl file does all the work
+function genexus_custom_sidebar() {
+    get_template_part( 'templates/sidebars' );
+}
+//add_action( 'genesis_before_sidebar_widget_area', 'genexus_custom_sidebar' );
+
+
+
+/**********************************************************/
+// NAV
 //* Reduce the secondary navigation menu to one level depth
 function genesis_sample_secondary_menu_args( $args ) {
 
@@ -273,6 +310,7 @@ function genexus_site_title(){
     global $post;
 
     //====== OTHER HDR ======//
+    $some_test_condition = false;
     if( $some_test_condition === true ) :  ?>
                 
         <div class="some-other-logo-header">
@@ -655,28 +693,28 @@ function live_or_local(){
 
 // Check current category for News
 //  dynamically provide either the genexus or kaff news logo based on page
-function check_current_category_for_news(){
-    // Get the news category id by slug
-    $newsCategory = get_category_by_slug('news');
-    $news_cat_id = $newsCategory->term_id;
+// function check_current_category_for_news(){
+//     // Get the news category id by slug
+//     $newsCategory = get_category_by_slug('news');
+//     $news_cat_id = $newsCategory->term_id;
 
-    // get child categories of news
-    $cat_args = array('child_of' => $news_cat_id);
-    $news_cat_children = get_categories($cat_args);
+//     // get child categories of news
+//     $cat_args = array('child_of' => $news_cat_id);
+//     $news_cat_children = get_categories($cat_args);
 
-    //get the children cats ids
-    $news_cats = array();
-    $i = 0;
-    foreach($news_cat_children as $news_cat_child){
-        $news_cats[$i] = $news_cat_child->cat_ID;
-        $i += 1;
-    }
+//     //get the children cats ids
+//     $news_cats = array();
+//     $i = 0;
+//     foreach($news_cat_children as $news_cat_child){
+//         $news_cats[$i] = $news_cat_child->cat_ID;
+//         $i += 1;
+//     }
 
-    //add children and parent together in array
-    array_push($news_cats, $news_cat_id);
-    //print_r($news_cats);
-    return($news_cats);
-}
+//     //add children and parent together in array
+//     array_push($news_cats, $news_cat_id);
+//     //print_r($news_cats);
+//     return($news_cats);
+// }
 
 // Convert Object to Array
 // Fn to convert Objects of stdClass to Arrays

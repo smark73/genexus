@@ -10,16 +10,12 @@
 
 
 // Remove Page Title
-//remove_action( 'genesis_post_title', 'genesis_do_post_title' );
-//remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+remove_action( 'genesis_post_title', 'genesis_do_post_title' );
+remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
 // Content Area
-//remove_action( 'genesis_loop', 'genesis_do_loop' );
-//add_action( 'genesis_loop', 'page_loop' );
-
-
-
-//
+remove_action( 'genesis_loop', 'genesis_do_loop' );
+add_action( 'genesis_loop', 'page_loop' );
 
 
 
@@ -46,6 +42,18 @@ function page_loop(){
              ?>
         </div>
 
+    </div>
+
+    <div class="row home-3col-c2a">
+        <div class="home-c2a home-c2a-1">
+            column 1
+        </div>
+        <div class="home-c2a home-c2a-2">
+            column 2
+        </div>
+        <div class="home-c2a home-c2a-3">
+            column 3
+        </div>
     </div>
         
     <?php

@@ -1,166 +1,72 @@
-
-// FRONT PAGE TILE LOGOS
-.kaff-logo,
-.kmgn-logo,
-.kaffam-logo,
-.kfsz-logo,
-.ktmg-logo,
-.knot-logo,
-.kzgl-logo,
-.e979-logo,
-.kaffnews-logo {
-  margin: auto;
-  max-height: 130px;
-  max-width: 200px;
-}
-
-.kaff-block { background: $kaff-block-color; }
-.kmgn-block { background: $kmgn-block-color; }
-.kaffam-block { background: $kaffam-block-color; }
-.kfsz-block { background: $kfsz-block-color; }
-.ktmg-block { background: $ktmg-block-color; }
-.knot-block { background: $knot-block-color; }
-.kzgl-block { background: $color-black; }
-.e979-block { background: $color-black; }
-.kaffnews-block { background: $neutral-tan-lt; }
-
-.station-tile {
-  //@include span-columns(4);
-  @extend .one-third;
-  padding:0;
-  margin:0;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-}
-
-.logo-block {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.block-btn {
-  //background-color: rgba (255, 255, 255, .2);
-  height: 40px;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 260px;
-  width: 100%;
-}
-
-.block-btn-kaff,
-.block-btn-kmgn,
-.block-btn-kzgl,
-.block-btn-kfsz,
-.block-btn-ktmg,
-.block-btn-e979 {
-  border: 1px solid transparent;
-  background-color: rgba (255, 255, 255, .2);
-  z-index: 10;
-}
-
-.block-btn-kaffam,
-.block-btn-knot,
-.block-btn-kaffnews {
-  border: 1px solid transparent;
-  background-color: rgba (0, 0, 0, .07);
-  z-index: 10;
-}
-
-//.block-btn-bg-lt,
-//.block-btn-bg-dk {
-  //border: 1px solid transparent;
-//}
-
-a.logo-block-link {
-  @extend %montserrat;
-  color: $color-white;
-  font-size: 1em;
-  line-height: 40px;
-  opacity: .5;
-  text-decoration: none;
-  vertical-align: middle;
-
-  &:hover {
-    color: $color-white;
-    opacity: 1;
-  }
-
-}
-
-.block-btn-web {
-  text-align: center;
-  width: 50%;
-  z-index: 100;
-}
-
-.block-btn-listen {
-  text-align: center;
-  width: 50%;
-  z-index: 100;
-
-  .glyphicon {
-    font-size: 1.4em;
-    padding-bottom: 7px;
-    padding-left: 10px;
-    vertical-align: middle;
-  }
-
-}
-
-.block-btn-show {
-  animation: blockBtnOn 1s;
-  animation-duration: .2s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-out;
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.block-btn-hide {
-  animation: blockBtnOff 1s;
-  animation-duration: .2s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-out;
-  opacity: 0;
-  transform: translate3d(0, 0, 0);
-}
-
-@keyframes blockBtnOn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes blockBtnOff {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-// jQuery toggles 2 classes on click to animate icon
-.spkr-icon {
-  display: inline-block;
-  left: 0;
-  position: relative;
-}
-
-
-
 // FRONT PAGE
 .home-top {
+
+  //@include row(table);
+  @include grid-container;
+
+  .home-top-c1 {
+    @include grid-column(8);
+    //@include omega;
+
+    float:left;
+  }
+
+  .home-top-c2 {
+    @include grid-column(4);
+    //@include omega;
+
+    float:left;
+    text-align: right;
+  }
+
+  .home-top-c1,
+  .home-top-c2 {
+    @include grid-media($gx-grid-sm) {
+      @include grid-column(12);
+      //@include omega;
+
+      margin: 20px auto;
+      text-align: center;
+    }
+  }
+
+  //.widget {
+    //border-bottom: 5px solid $neutral-tan-lt;
+    //.widgettitle {
+      //background: $neutral-tan-lt;
+    //}
+  //}
+
   margin: 2% auto;
   padding: 10px 0;
 
-  .widget {
-    //border-bottom: 5px solid $neutral-tan-lt;
+}
 
-    .widgettitle {
-      background: $neutral-tan-lt;
+
+.home-3col-c2a {
+
+  //@include row(table);
+  @include grid-container;
+
+  .home-c2a {
+    
+    @include grid-column(4);
+    //@include omega;
+    
+    //border: 1px solid $red;
+    height: 200px;
+    float:left;
+
+    @include grid-media($gx-grid-md){
+      @include grid-column(6);
+      //@include omega;
     }
 
+    @include grid-media($gx-grid-sm){
+      @include grid-column(12);
+      //@include omega;
+    }
   }
+
 
 }
