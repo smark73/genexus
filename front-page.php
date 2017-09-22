@@ -18,13 +18,12 @@ remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', 'page_loop' );
 
 
-
 function page_loop(){
     ?>
 
-    <div class="row home-top">
+    <div class="home-r1">
 
-        <div class="">
+        <div class="home-r1-c1">
             <?php
                 //display home page content
                 $home_post_args = array(
@@ -42,16 +41,20 @@ function page_loop(){
              ?>
         </div>
 
+        <div class="home-r1-c2">
+            <?php genesis_widget_area( 'sidebar-homepage' );?>
+        </div>
+
     </div>
 
-    <div class="row home-3col-c2a">
-        <div class="home-c2a home-c2a-1">
+    <div class="home-r2">
+        <div class="home-r2-c">
             column 1
         </div>
-        <div class="home-c2a home-c2a-2">
+        <div class="home-r2-c">
             column 2
         </div>
-        <div class="home-c2a home-c2a-3">
+        <div class="home-r2-c">
             column 3
         </div>
     </div>

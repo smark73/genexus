@@ -3,7 +3,7 @@
  * Functions
  * @package      genexus
  * @author       Stacy Mark <stacy.mark@kaff.com>
- * @copyright    Copyright (c) 2016
+ * @copyright    Copyright (c) 2017
  * @license      All Rights Reserved
  *
  */
@@ -34,7 +34,7 @@ include_once( get_stylesheet_directory() . '/lib/output.php' );
 //* Child theme (do not remove)
 define( 'CHILD_THEME_NAME', 'Genexus (Geneis Child with Bourbon Neat' );
 define( 'CHILD_THEME_URL', '' );
-define( 'CHILD_THEME_VERSION', '2.1.2' );
+define( 'CHILD_THEME_VERSION', '2.2.4' );
 
 
 
@@ -42,7 +42,7 @@ define( 'CHILD_THEME_VERSION', '2.1.2' );
 //* Enqueue Scripts and Styles
 
 //FRONTEND
-function genexus_enqueue_reqs() {
+function gx_enqueue_reqs() {
 
 	//load the WP included jquery ... into head
 	wp_enqueue_script( 'jquery');
@@ -54,24 +54,24 @@ function genexus_enqueue_reqs() {
 	wp_deregister_style( 'genesis-sample-theme' );
 
 	//* Add compiled stylesheet
-	wp_register_style( 'genexus-styles', get_stylesheet_directory_uri() . '/style.css', array(), CHILD_THEME_VERSION );
-	wp_enqueue_style( 'genexus-styles' );
+	wp_register_style( 'gx-styles', get_stylesheet_directory_uri() . '/style.css', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( 'gx-styles' );
 
-	//wp_enqueue_script( 'genexus-responsive-menu', get_stylesheet_directory_uri() . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0', true );
+	//wp_enqueue_script( 'gx-responsive-menu', get_stylesheet_directory_uri() . '/js/responsive-menu.js', array( 'jquery' ), '1.0.0', true );
 	//$output = array(
 	//	'mainMenu' => __( '', 'genesis-sample' ),
 	//	'subMenu'  => __( '', 'genesis-sample' ),
 	//);
-	//wp_localize_script( 'genexus-responsive-menu', 'genesisSampleL10n', $output );
+	//wp_localize_script( 'gx-responsive-menu', 'genesisSampleL10n', $output );
 
 	//* Add compiled JS
-	wp_enqueue_script( 'genexus-scripts', get_stylesheet_directory_uri() . '/js/script.min.js', array(), CHILD_THEME_VERSION, true );
+	wp_enqueue_script( 'gx-scripts', get_stylesheet_directory_uri() . '/js/script.min.js', array(), CHILD_THEME_VERSION, true );
 
 }
-add_action( 'wp_enqueue_scripts', 'genexus_enqueue_reqs' );
+add_action( 'wp_enqueue_scripts', 'gx_enqueue_reqs' );
 
 //BACKEND load scripts, styles, fonts
-function genexus_admin_reqs(){
+function gx_admin_reqs(){
 	// Enqueue jQuery Datepicker + jQuery UI CSS
 	//this fixes jquery ajax error
     wp_register_script( 'admin-scripts', get_stylesheet_directory_uri() . '/js/adminscripts.min.js' );
@@ -82,7 +82,7 @@ function genexus_admin_reqs(){
 	wp_register_style( 'jquery-ui-style', get_stylesheet_directory_uri() . '/js/jquery-ui-1.11.4.custom/jquery-ui.min.css', false, '1.11.4');
 	wp_enqueue_style( 'jquery-ui-style' );
 }
-add_action( 'admin_enqueue_scripts', 'genexus_admin_reqs');
+add_action( 'admin_enqueue_scripts', 'gx_admin_reqs');
 
 
 
@@ -172,10 +172,10 @@ genesis_register_sidebar( array(
 
 // Tell Genesis to use our custom sidebar based on category/page/etc
 // the tpl file does all the work
-function genexus_custom_sidebar() {
+function gx_custom_sidebar() {
     get_template_part( 'templates/sidebars' );
 }
-//add_action( 'genesis_before_sidebar_widget_area', 'genexus_custom_sidebar' );
+//add_action( 'genesis_before_sidebar_widget_area', 'gx_custom_sidebar' );
 
 
 
@@ -248,8 +248,8 @@ function genesis_sample_include_svg_icons() {
 add_action( 'wp_head', 'genesis_sample_include_svg_icons', 999 );
 
 // copyright meta
-add_action( 'genesis_meta', 'genexus_meta_info' );
-function genexus_meta_info(){
+add_action( 'genesis_meta', 'gx_meta_info' );
+function gx_meta_info(){
     ?>
     <meta name="author" content="Great Circle Media">
     <meta name="dcterms.dateCopyrighted" content="2015">
@@ -257,15 +257,15 @@ function genexus_meta_info(){
     <meta name="dcterms.rightsHolder" content="Great Circle Media">
     <?php
 }
-//add_action('wp_head', 'genexus_meta_info');
+//add_action('wp_head', 'gx_meta_info');
 
 //add animate to front page
-function genexus_add_to_head(){
+function gx_add_to_head(){
     if( is_front_page() ){
         echo "<link type='text/css' rel='stylesheet' href='/wp-content/themes/genexus/assets/styles/animate/animate.min.css'>";
 	}
 }
-//add_action('wp_head', 'genexus_add_to_head');
+//add_action('wp_head', 'gx_add_to_head');
 
 
 
@@ -296,7 +296,7 @@ function namespace_add_custom_types( $query ) {
 //add_action( 'genesis_before_header', 'genesis_do_nav' );
 
 // logo or text (chosen in theme customization)
-// -- replaced with ours genexus_site_title
+// -- replaced with ours gx_site_title
 remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 
 // tagline
@@ -305,7 +305,7 @@ remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
 
 
 // Change site title (logo / "header left") to ours
-function genexus_site_title(){
+function gx_site_title(){
 
     global $post;
 
@@ -326,12 +326,12 @@ function genexus_site_title(){
 
     <?php endif;
 }
-add_action( 'genesis_site_title', 'genexus_site_title' );
+add_action( 'genesis_site_title', 'gx_site_title' );
 
 
 
 // Customize genesis_header_right (shows above default stuff in genesis_header_right)
-function genexus_header_right(){
+function gx_header_right(){
 
     global $post;
     ?>
@@ -355,7 +355,7 @@ function genexus_header_right(){
     <?php
 
 }
-add_action( 'genesis_header_right', 'genexus_header_right' );
+add_action( 'genesis_header_right', 'gx_header_right' );
 
 
 
@@ -444,7 +444,7 @@ if( $ptko_settings['ptko_toggle'] === 1 ){
 
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 
-function genexus_footer() {
+function gx_footer() {
     if ( is_page( 'some-page-we-dont-want-this-ftr-on' ) ){
     	//some other footer
 		//wp_footer();
@@ -456,7 +456,7 @@ function genexus_footer() {
     <?php
     }
 }
-add_action( 'genesis_footer', 'genexus_footer' );
+add_action( 'genesis_footer', 'gx_footer' );
 
 
 
@@ -472,102 +472,88 @@ add_action( 'genesis_before_header', 'genexus_mobile_nav');
 
 
 // Create the mobile menu 
-$menu_name = 'Mobile Menu';
-$menu_exists = wp_get_nav_menu_object( $menu_name );
+//$menu_name = 'Mobile Menu';
+//$menu_exists = wp_get_nav_menu_object( $menu_name );
 
 //if doesn't exist, create it
-if( ! $menu_exists ){
-    $menu_id = wp_create_nav_menu( $menu_name );
+//if( ! $menu_exists ){
+//    $menu_id = wp_create_nav_menu( $menu_name );
 
     //set default items
     // Home Page (repeat for other items)
-    wp_update_nav_menu_item( $menu_id, 0, array(
-        'menu-item-title' => __('Home'),
-        'menu-item-classes' => 'home',
-        'menu-item-url' => home_url('/'),
-        'menu-item-status' => 'publish'
-        ));
-}
+//    wp_update_nav_menu_item( $menu_id, 0, array(
+//        'menu-item-title' => __('Home'),
+//        'menu-item-classes' => 'home',
+//        'menu-item-url' => home_url('/'),
+//        'menu-item-status' => 'publish'
+//        ));
+//}
 
 
 // Register our mobile menu 
 function register_mobile_menu() {
-  register_nav_menu('mobile-menu',__( 'Mobile Menu' ));
+ register_nav_menu('mobile-menu',__( 'Mobile Menu' ));
 }
 add_action( 'init', 'register_mobile_menu' );
 
 
-// Custom Nav Walker for our mobile menu
-class mobile_walker_nav_menu extends Walker_Nav_Menu {
+// Get the mobile menu and modify the items output
+function modify_mobile_menu(){
 
-    // add classes to ul sub-menus
-    function start_lvl( &$output, $depth = 0, $args = array() ) {
-        // depth dependent classes
-        $indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
-        $display_depth = ( $depth + 1); // because it counts the first submenu as 0
-        $classes = array(
-            'sub-menu',
-            ( $display_depth % 2  ? 'menu-odd' : 'menu-even' ),
-            ( $display_depth >=2 ? 'sub-sub-menu' : '' ),
-            'menu-depth-' . $display_depth
-            );
-        $class_names = implode( ' ', $classes );
+    // transient of menu
+    //purge('mobile_menu_trans');
 
-        // build html
-        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
-    }
+    if ( false === ( $mobile_menu_trans = get_transient( 'mobile_menu_trans' ) ) ) {
 
-    // add main/sub classes to li's and links
-     function start_el(  &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-        global $wp_query;
-        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+        // start creating html
+        $menu_list = '';
+        $menu_list .= '<nav class="js-menu sliding-panel-content">';
+        $menu_list .= '<div class="wrap">';
+        $menu_list .= '<ul class="menu genesis-nav-menu mobile-menu">';
 
-        // depth dependent classes
-        $depth_classes = array(
-            ( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
-            ( $depth >=2 ? 'sub-sub-menu-item' : '' ),
-            ( $depth % 2 ? 'menu-item-odd' : 'menu-item-even' ),
-            'menu-item-depth-' . $depth
-        );
-        $depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+        // get the menu object and items
+        $locations = get_nav_menu_locations();
+        $menu = get_term($locations['mobile-menu']);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
 
-        // passed classes
-        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-        $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+        // cycle through items and add arrow
+        foreach( $menu_items as $menu_item ){
 
-        // build html
-        $output .= $indent . '<li id="nav-menu-item-'. $item->ID . '" class="' . ' ' . $class_names . '">';
+            //print_r($menu_item);
 
-        // link attributes
-        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-        $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-        $attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link mobile-nav-item' : 'mobile-nav-top-item' ) . '"';
-        
-        //add data- attribute to submenu items
-        // we enter the data-filter attribute in the WP link item's "url" field since it isn't used normally
-        if($depth > 0){
-            // cant input a period for the value of the data-filter attr in the WP link item url, so we used a # instead
-            // need to replace the # with a .
-            $filter_data_val_raw = esc_attr( $item->url );
-            $filter_data_val = str_replace('#', '.', $filter_data_val_raw );
-            $attributes .= ' data-filter="' . $filter_data_val . '"';
+            if($menu_item->menu_item_parent === '0') {
+                $menu_list .= '<li class="menu-item menu-item-has-child">';
+            } else {
+                $menu_list .= '<li class="menu-item">';
+            }
+
+            $menu_list .= '<a href="' . $menu_item->url . '" itemprop="url"><span itemprop="name">' . $menu_item->title . '</span></a>';
+            $menu_list .= '</li>';
         }
 
-        $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
-            $args->before,
-            $attributes,
-            $args->link_before,
-            apply_filters( 'the_title', $item->title, $item->ID ),
-            $args->link_after,
-            $args->after
-        );
+        // finish building html
+        $menu_list .= '</ul>';
+        $menu_list .= '</div>';
+        $menu_list .= '</nav>';
 
-        // build html
-        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $mobile_menu_trans = $menu_list;
+
+        //set transient for 1 day
+        set_transient( 'mobile_menu_trans', $mobile_menu_trans, 60*60*24 );
+
+    } else {
+
+        $mobile_menu_trans = get_transient( 'mobile_menu_trans' );
+
     }
+
+    $menu_list = $mobile_menu_trans;
+    //print_r($menu_items);
+    echo $menu_list;
+
 }
+add_action( 'genesis_before_content_sidebar_wrap', 'modify_mobile_menu', 5 );
+
 
 
 
@@ -575,13 +561,13 @@ class mobile_walker_nav_menu extends Walker_Nav_Menu {
 // CUSTOMIZE THE Login Screen
 
 // Use your own external URL logo link
-function genexus_url_login(){
+function gx_url_login(){
     return "/";
 }
-add_filter('login_headerurl', 'genexus_url_login');
+add_filter('login_headerurl', 'gx_url_login');
 
 // change logo
-function genexus_login_logo() {
+function gx_login_logo() {
 	?>
     <style type="text/css">
         #login{
@@ -597,7 +583,7 @@ function genexus_login_logo() {
     </style>
     <?php
 }
-add_action( 'login_head', 'genexus_login_logo' );
+add_action( 'login_head', 'gx_login_logo' );
 
 
 
@@ -605,13 +591,13 @@ add_action( 'login_head', 'genexus_login_logo' );
 /**********************************************************/
 // ADD USER CONTACT INFO
 /*  Add more contact details for WP users in profile */
-function genexus_user_contactmethods($contactmethods){
+function gx_user_contactmethods($contactmethods){
     $contactmethods['twitter'] = 'Twitter';
     $contactmethods['facebook'] = 'Facebook';
     $contactmethods['googleplus'] = 'Google+';
     return $contactmethods;
 }
-add_filter('user_contactmethods', 'genexus_user_contactmethods', 10, 1);
+add_filter('user_contactmethods', 'gx_user_contactmethods', 10, 1);
 
 
 

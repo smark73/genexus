@@ -1,5 +1,7 @@
 <?php
 
+    global $post;
+
     // USER ICON & DROPDOWN
     if ( is_user_logged_in() ) {
 
@@ -26,8 +28,8 @@
                 </a>
 
                 <ul class="dropdown hide-me">
-                  <li><a href="' . wp_logout_url() . '" title="Logout">Logout</a></li>
-                  <li><a href="' . $our_login_link . '" title="Profile">' . $our_user_name . '</a></li>
+                  <li><a href="' . wp_logout_url() . '" title="Logout" rel="nofollow">Logout</a></li>
+                  <li><a href="' . $our_login_link . '" title="Profile" rel="nofollow">' . $our_user_name . '</a></li>
                 </ul>
 
             </div>
@@ -38,7 +40,7 @@
         // ===== NOT LOGGED IN =====
         echo '
             <div class="user-nav" title="Login">
-                <a href="' . wp_login_url( get_permalink() ) . '" class="icon-user">
+                <a href="' . wp_login_url( get_permalink() ) . '" class="icon-user" rel="nofollow">
                     <i class="fa fa-user"></i>
                 </a>
             </div>';
@@ -50,7 +52,7 @@
     // SEARCH ICON & DROPDOWN
     ?>
     <div class="search-nav">
-        <a class="icon-search" title="Search">
+        <a class="icon-search" title="Search" rel="nofollow">
             <i class="fa fa-search"></i>
         </a>
     </div>
@@ -66,10 +68,10 @@
         //if( $post->post_name == 'kaff-news' || in_category( check_current_category_for_news() ) ) {
         ?>
         
-            <a href="https://www.facebook.com/#" target="_blank" class="icon-fb" title="#">
+            <a href="https://www.facebook.com/#" target="_blank" class="icon-fb" title="#" rel="nofollow">
                 <i class="fa fa-facebook"></i>
             </a>
-            <a href="https://twitter.com/#" target="_blank" class="icon-tw" title="#">
+            <a href="https://twitter.com/#" target="_blank" class="icon-tw" title="#" rel="nofollow">
                 <i class="fa fa-twitter"></i>
             </a>
         
