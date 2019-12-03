@@ -1,12 +1,14 @@
 #Theme Specific Build Files to ignore
 
+#ignore symlink
+node_modules
+
 uploads/
 blogs.dir/
 upgrade/
 backup-db/
 cache/
 backups/
-node_modules/
 bower/
 bower_components/
 

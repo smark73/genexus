@@ -385,47 +385,22 @@ function custom_header() {
 
 
 /**********************************************************/
-// PAGE TAKEOVER
+// PAGE TAKEOVER 2.0
 /**********************************************************/
 
 // get the ptko options array
 $ptko_settings = get_option('ptko_settings');
 
-// check if page take over is enabled 
+// check if page take over is enabled and add display to layout
 if( $ptko_settings['ptko_toggle'] === 1 ){
-    
-    // create new styles and put in head
-    //add_action( 'wp_head', 'ptko_styles' );
-    function ptko_styles(){
-        $ptko_settings = get_option('ptko_settings');
-        $bgcolor = esc_attr($ptko_settings['ptko_bgcolor']);
-        $bgimg = esc_url($ptko_settings['ptko_bgimg']);
-        $newstyles = "
-            <style type='text/css'>
-            .takeover{background:$bgcolor;background-image: url('$bgimg');background-position:center 102px;background-repeat:no-repeat;}
-            @media (max-width: 767px) { .takeover{background:$bgcolor;}
-            </style>
-        ";
-        echo $newstyles;
-    }
+    add_action( 'genesis_before_header', 'display_pto_banner' );
+    add_action( 'genesis_before_footer', 'display_pto_banner' );
+}
 
-    // add takeover class to body
-    //add_filter('body_class', 'add_takeover_body_class');
-    function add_takeover_body_class($classes){
-        $classes[] = 'takeover';
-        return $classes;
-    }
-
-    // add takeover header
-    //add_action('display_ptko', 'ptko_inc_hdr');
-    function ptko_inc_hdr($ptko_settings){
-        get_template_part('templates/takeover-hdr');
-    }
-
-
-    // 2016 PTO
-    function page_takeover_hdr() {
-        $ptko_settings = get_option('ptko_settings');
+function display_pto_banner(){
+    //called where needed to display PTO banner
+    $ptko_settings = get_option('ptko_settings');
+    if( $ptko_settings['ptko_toggle'] === 1 ){
         ?>
             <div class="takeover" style="background:<?php echo esc_attr($ptko_settings['ptko_bgcolor']);?>">
                 <a href="<?php echo esc_url( $ptko_settings['ptko_link'] );?>" target="_blank" rel="nofollow">
@@ -434,8 +409,6 @@ if( $ptko_settings['ptko_toggle'] === 1 ){
             </div>
         <?php
     }
-    add_action( 'genesis_before_header', 'page_takeover_hdr' );
-
 }
 
 
