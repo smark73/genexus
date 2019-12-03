@@ -1,4 +1,6 @@
-## Genesis Sample Theme with Gulp & Sass
+## My starter theme for GCMAZ websites
+
+## Built on Genesis Sample Theme with Gulp & Sass
 Based on Greg Rickaby's 
 https://github.com/gregrickaby/genesis-sample
 
