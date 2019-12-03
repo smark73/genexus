@@ -1,10 +1,10 @@
 ## My starter theme for GCMAZ websites
 
-## Built on Genesis Sample Theme with Gulp & Sass
+## Based on Genesis Sample Theme with Gulp & Sass
 Based on Greg Rickaby's 
 https://github.com/gregrickaby/genesis-sample
 
-Specific Mods:
+## My Modifications:
 Font Awesome Included
 Mobile Menu - Created in functions as separate menu to populate Sliding Panel (from Bourbon Refills) 
 Some Genesis column styles replaced with Neat
